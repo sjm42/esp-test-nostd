@@ -1,0 +1,22 @@
+[package]
+name = "esp_test_nostd"
+version = "0.1.0"
+authors = ["Sami J. Mäkinen <sjm@iki.fi>"]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+embedded-hal = "0.2"
+esp32c3-hal = "0.2"
+esp-alloc = { version = "0.1", features = ["oom-handler"] }
+esp-backtrace = { version = "0.3", features = [
+    "esp32c3",
+    "panic-handler",
+    "print-uart",
+] }
+riscv-rt = { version = "0.9", optional = true }
+
+
+[features]
+default = ["rt"]
+rt = ["riscv-rt"]

@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+#set -x
+
+usage()
+{
+	echo "Usage: $0 b|c|f"
+	echo "  Operation: b = build, c = clippy, f = cargo flash"
+    exit 1
+}
+
+flags="--release"
+case "$1" in
+B*|b*)
+    set -x
+    cargo build $flags
+    ;;
+C*|c*)
+    set -x
+    cargo clippy $flags
+    ;;
+F*|f*)
+    set -x
+    cargo espflash $flags --monitor
+    ;;
+*)
+    usage
+    ;;
+esac
+exit 0
+# EOF
